@@ -58,18 +58,48 @@
     </dependency>
 
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.11</version>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <version>5.7.0</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
 
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
-
     </pluginManagement>
       <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-dependency-plugin</artifactId>
+          <executions>
+            <execution>
+              <id>copy-dependencies</id>
+              <phase>prepare-package</phase>
+              <goals>
+                <goal>copy-dependencies</goal>
+              </goals>
+              <configuration>
+                <outputDirectory>
+                  ${project.build.directory}/libs
+                </outputDirectory>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jar-plugin</artifactId>
+          <configuration>
+            <archive>
+              <manifest>
+                <addClasspath>true</addClasspath>
+                <classpathPrefix>libs/</classpathPrefix>
+                <mainClass>l2s.App</mainClass>
+              </manifest>
+            </archive>
+          </configuration>
+        </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-shade-plugin</artifactId>
@@ -77,7 +107,7 @@
           <executions>
             <execution>
               <id>shade-my-jar</id>
-              <phase>package</phase>
+              <phase>none</phase>
               <goals>
                 <goal>shade</goal>
               </goals>
@@ -91,19 +121,6 @@
                     </manifestEntries>
                   </transformer>
                 </transformers>
-              </configuration>
-            </execution>
-          </executions>
-        </plugin>
-        <plugin>
-          <artifactId>maven-jar-plugin</artifactId>
-          <executions>
-            <execution>
-              <id>default-jar</id>
-              <phase>none</phase>
-              <configuration>
-                <finalName>unwanted</finalName>
-                <classifier>unwanted</classifier>
               </configuration>
             </execution>
           </executions>
