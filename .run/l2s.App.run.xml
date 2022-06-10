@@ -1,0 +1,18 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="l2s.App" type="Application" factoryName="Application" nameIsGenerated="true">
+    <envs>
+      <env name="CONFIG_FILE_URI" value="/var/conf/apps/l2s/l2s_DEV.properties" />
+    </envs>
+    <option name="MAIN_CLASS_NAME" value="l2s.App" />
+    <module name="l2s" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="l2s.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

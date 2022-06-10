@@ -9,6 +9,7 @@ import javax.sql.DataSource;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Objects;
 import java.util.Properties;
 
 
@@ -24,6 +25,7 @@ class Util {
         final HikariDataSource ds = new HikariDataSource();
         //CONFIG_FILE_URI=/var/conf/apps/l2s/l2s_DEV.properties
         final String CONFIG_FILE = System.getenv("CONFIG_FILE_URI");
+        if( Objects.isNull(CONFIG_FILE)) throw new RuntimeException("Set env var for config file e.g: CONFIG_FILE_URI=/var/conf/apps/l2s/l2s_DEV.properties");
         String jdbcURL= null;
         try (final InputStream stream = Files.newInputStream(Paths.get(CONFIG_FILE))
              ) {
