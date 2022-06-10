@@ -68,6 +68,7 @@
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
 
+    </pluginManagement>
       <plugins>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -75,6 +76,7 @@
           <version>3.3.0</version>
           <executions>
             <execution>
+              <id>shade-my-jar</id>
               <phase>package</phase>
               <goals>
                 <goal>shade</goal>
@@ -93,8 +95,20 @@
             </execution>
           </executions>
         </plugin>
+        <plugin>
+          <artifactId>maven-jar-plugin</artifactId>
+          <executions>
+            <execution>
+              <id>default-jar</id>
+              <phase>none</phase>
+              <configuration>
+                <finalName>unwanted</finalName>
+                <classifier>unwanted</classifier>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
       </plugins>
-    </pluginManagement>
   </build>
   <dependencyManagement>
     <dependencies>
