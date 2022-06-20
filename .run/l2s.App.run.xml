@@ -4,7 +4,7 @@
       <env name="CONFIG_FILE_URI" value="/var/conf/apps/l2s/l2s_DEV.properties" />
     </envs>
     <option name="MAIN_CLASS_NAME" value="l2s.App" />
-    <module name="l2s" />
+    <module name="mdm-land2stage" />
     <extension name="coverage">
       <pattern>
         <option name="PATTERN" value="l2s.*" />
